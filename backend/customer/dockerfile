@@ -1,0 +1,16 @@
+# Get the image with nodeJS and NPM
+FROM node:14.15.3
+# Create a working directory
+WORKDIR /instacut_micro_api/mobile/customer
+# A wilcard is used to ensure both package.json and package-lock.json are copied 
+COPY package*.json ./
+# If you are building your code for production
+# RUN npm install --only=production
+RUN npm install
+  
+# Copy entire app source
+COPY . .
+# The app is binding to port 3000
+EXPOSE 3000
+# Run node userService.js to start the server
+CMD ["npm", "start"]
